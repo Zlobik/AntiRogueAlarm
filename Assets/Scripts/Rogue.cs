@@ -5,59 +5,44 @@ using UnityEngine;
 public class Rogue : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private float _slewRateVolume;
-    [SerializeField] private AudioSource _siren;
     [SerializeField] private SpriteRenderer _render;
+    [SerializeField] private float _speedInHouse;
+
+    private float _outSpeed;
 
     private bool _isEnter = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Vector3 currentPosition;
-
-        if (collision.GetComponent<EnterTrigger>())
+        if (collision.GetComponent<Door>())
         {
-            currentPosition = transform.position;
+            if (!_isEnter)
+                _isEnter = true;
+            else if (_isEnter)
+                _isEnter = false;
 
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, 1);
-
-            _siren.volume = 0;
-            _siren.Play();
-
-            _isEnter = true;
-
-            _speed /= 3;
+            if (_isEnter)
+            {
+                _outSpeed = _speed;
+                _speed = _speedInHouse;
+                transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+                _render.flipX = false;
+            }
+            else if (!_isEnter)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            }
         }
 
-        if (collision.GetComponent<OutTrigger>())
+        if (collision.GetComponent<InHouse>())
         {
-            _isEnter = false;
-
-            currentPosition = transform.position;
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0);
             _render.flipX = true;
-
-            _speed *= -5;
+            _speed = -_outSpeed * 2;
         }
     }
 
     private void Update()
     {
         transform.Translate(_speed * Time.deltaTime, 0, 0);
-
-        if (_siren.isPlaying)
-        {
-            if (_isEnter)
-            {
-                _siren.volume += _slewRateVolume * Time.deltaTime;
-            }
-            else if (!_isEnter)
-            {
-                _siren.volume -= _slewRateVolume * Time.deltaTime;
-
-                if (_siren.volume == 0)
-                    _siren.Stop();
-            }
-        }
     }
 }

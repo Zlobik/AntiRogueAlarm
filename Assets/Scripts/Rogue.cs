@@ -5,16 +5,15 @@ using UnityEngine;
 public class Rogue : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private SpriteRenderer _render;
     [SerializeField] private float _speedInHouse;
+    [SerializeField] private SpriteRenderer _render;
 
     private float _outSpeed;
-
     private bool _isEnter = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Door>())
+        if (collision.GetComponent<Siren>())
         {
             if (!_isEnter)
                 _isEnter = true;
@@ -34,7 +33,7 @@ public class Rogue : MonoBehaviour
             }
         }
 
-        if (collision.GetComponent<InHouse>())
+        if (collision.tag == "Trigger")
         {
             _render.flipX = true;
             _speed = -_outSpeed * 2;

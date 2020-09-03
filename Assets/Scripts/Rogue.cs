@@ -33,7 +33,7 @@ public class Rogue : MonoBehaviour
             }
         }
 
-        if (collision.tag == "Trigger")
+        if (collision.GetComponent<RightHouseCorner>())
         {
             _render.flipX = true;
             _speed = -_outSpeed * 2;

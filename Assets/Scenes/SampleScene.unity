@@ -237,8 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _render: {fileID: 778657278}
   _speedInHouse: 1.1
+  _render: {fileID: 778657278}
 --- !u!61 &778657276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -885,13 +885,26 @@ GameObject:
   - component: {fileID: 2092448160}
   - component: {fileID: 2092448159}
   - component: {fileID: 2092448158}
+  - component: {fileID: 2092448157}
   m_Layer: 0
   m_Name: HouseTrigger
-  m_TagString: Trigger
-  m_Icon: {fileID: 0}
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2092448157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092448156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b169bc15ea6d82468dea044a2ff1bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &2092448158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -905,7 +918,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -3.3618429, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -916,7 +929,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.36, y: 7.36}
+  m_Size: {x: 0.6363139, y: 7.36}
   m_EdgeRadius: 0
 --- !u!212 &2092448159
 SpriteRenderer:
